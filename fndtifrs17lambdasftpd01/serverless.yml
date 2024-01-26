@@ -1,0 +1,25 @@
+service: fndtifrs17lambdasftpd01
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  iamRoleStatementsName: fndtifrs17irollambda${ssm:/configuracion/variable/entorno}01
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - sqs:ReceiveMessage
+        - sqs:DeleteMessage
+        - sqs:GetQueueAttributes
+        - ssm:GetParameters
+        - ssm:GetParameter
+      Resource:
+        - arn:aws:sqs:us-east-1:163953886382:fndtifrs17sqscolad01
+
+functions:
+  function1:
+    handler: index.handler
+    name: fndtifrs17lambdasftp${ssm:/configuracion/variable/entorno}01
+    events:
+      - sqs: arn:aws:sqs:us-east-1:163953886382:fndtifrs17sqscolad01

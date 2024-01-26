@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "aws-sdk": "^2.1542.0"
+  },
+  "devDependencies": {
+    "serverless-secrets-plugin": "^0.1.0"
+  }
+}
