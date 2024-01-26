@@ -1,6 +1,8 @@
 {
   "dependencies": {
-    "aws-sdk": "^2.1542.0"
+    "aws-sdk": "^2.1542.0",
+    "fs": "^0.0.1-security",
+    "ssh2-sftp-client": "^10.0.3"
   },
   "devDependencies": {
     "serverless-secrets-plugin": "^0.1.0"
