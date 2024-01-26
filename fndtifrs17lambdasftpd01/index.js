@@ -164,12 +164,10 @@ async function connection(sftp, fileContent){
         response.message = 'Successfully connected to sftp'
         response.body = sftp 
         console.log(response);
-
-      } catch (error) {
+    } catch (error) {
         console.log(error);
         response.message = `Error en la conexión: ${error}`
         return response
     }
-
     return response;
 }
