@@ -14,12 +14,17 @@ provider:
         - sqs:GetQueueAttributes
         - ssm:GetParameters
         - ssm:GetParameter
+        - s3:ListBucket
+        - s3:GetObject
+        - s3:PutObject
+        - s3:CopyObject
       Resource:
-        - arn:aws:sqs:us-east-1:163953886382:fndtifrs17sqscolad01
+        - arn:aws:sqs:us-east-1:163953886382:fndtifrs17sqscola${ssm:/configuracion/variable/entorno}01
+        - arn:aws:s3:::*
 
 functions:
   function1:
     handler: index.handler
     name: fndtifrs17lambdasftp${ssm:/configuracion/variable/entorno}01
     events:
-      - sqs: arn:aws:sqs:us-east-1:163953886382:fndtifrs17sqscolad01
+      - sqs: arn:aws:sqs:us-east-1:163953886382:fndtifrs17sqscola${ssm:/configuracion/variable/entorno}01

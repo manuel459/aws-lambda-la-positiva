@@ -13,10 +13,21 @@ exports.handler = async (event, context) => {
         
       const sqsMessage = JSON.parse(event.Records[0].body)
 
+      const BucketGeneric = sqsMessage.Records[0].s3.bucket.name
+      const KeyOrigen = sqsMessage.Records[0].s3.object.key
+      const Dominio = (KeyOrigen.split("/"))[1]
+      const fileName = (KeyOrigen.split("/"))[2]
+
+      console.log(BucketGeneric)
+      console.log(KeyOrigen)
+      console.log(fileName)
+
       const params = {
-        Bucket: sqsMessage.Records[0].s3.bucket.name,
-        Key: sqsMessage.Records[0].s3.object.key
+        Bucket: BucketGeneric,
+        Key: `Procesados/${Dominio}/${fileName}`,
+        CopySource: BucketGeneric + '/' + KeyOrigen
       }
+
       if(!params.Bucket || !params.Key){
         Response.message = "Ocurrio un Error al recepcionar la cola sqs"
         console.log(Response)
