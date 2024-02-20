@@ -7,6 +7,7 @@ const { extractionSSH, downloadLocalFile, connection } = require("./functions.js
 
 // Función principal de Lambda
 exports.handler = async (event, context) => {
+    console.log(event)
 
     //OBJECT RESPONSE RETURN
     const Response = { succest : 0 , message: "", body: {} } 
@@ -29,7 +30,7 @@ exports.handler = async (event, context) => {
       console.log(KeyOrigen)
       console.log(fileName)
 
-      if(flag == 1){
+      if(flag == 0){
         //---------------------------//
         //  INICIALIZAR CLIENTE SFTP
         //---------------------------//
